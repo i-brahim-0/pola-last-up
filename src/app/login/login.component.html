@@ -1,0 +1,104 @@
+<div class="auth-container">
+  <div class="row auth-main">
+    <div class="col-sm-6 px-0 d-none d-sm-block">
+      <div class="text-center">
+        <img
+          src="/assets/left_pic2.jpg"
+          class="img-fluid w-100 h-100 overflow-hidden"
+          alt="here photo"
+        />
+      </div>
+    </div>
+    <div class="col-sm-6 auth-form-section">
+      <div class="form-section py-5 m-auto">
+        <div class="auth-wrapper">
+          <h2 class="welcome-msg text-center text-warning">Sign In</h2>
+          <p class="auth-signup-text text-muted text-center">
+            Enter details to login your account
+          </p>
+          <!-- start form input -->
+
+          <div class="w-50 m-auto">
+            <div *ngIf="error.length > 0" class="alert alert-danger">
+              <span> {{ error }} </span>
+            </div>
+            <form
+              [formGroup]="loginForm"
+              (ngSubmit)="submitLoginForm(loginForm)"
+            >
+              <div class="form-group">
+                <label for="username">User name</label>
+                <input
+                  formControlName="username"
+                  class="form-control"
+                  type="text"
+                  id="username"
+                />
+                <div
+                  class="alert my-2 alert-danger"
+                  *ngIf="
+                    loginForm.get('username')!.errors != null &&
+                    loginForm.get('username')!.touched
+                  "
+                >
+                  <span *ngIf="loginForm.get('username')!.errors?.['required']">
+                    username is requred
+                  </span>
+                  <span *ngIf="loginForm.get('username')!.errors?.['pattern']">
+                    username is mor_2314
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  formControlName="password"
+                  class="form-control"
+                  type="password"
+                  id="password"
+                />
+                <div
+                  class="alert my-2 alert-danger"
+                  *ngIf="
+                    loginForm.get('password')!.errors != null &&
+                    loginForm.get('password')!.touched
+                  "
+                >
+                  <span *ngIf="loginForm.get('password')!.errors?.['required']">
+                    Password is 83r5^_
+                  </span>
+                  <span
+                    *ngIf="loginForm.get('password')!.errors?.['minlength']"
+                  >
+                    Password min length 4
+                  </span>
+                </div>
+              </div>
+              <div class="flex-sb-m w-full m-auto p-b-20 text-center">
+                <div>
+                  <span
+                    >Create Account ?
+                    <a routerLink="/register" class="text-warning">
+                      Register
+                    </a></span
+                  >
+                </div>
+              </div>
+              <div class="text-center py-2">
+                <button
+                  [disabled]="loginForm.invalid"
+                  class="btn btn-info w-50 m-auto rounded-pill"
+                  type="submit"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- end form -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,223 @@
+<div class="auth-container">
+  <div class="row auth-main">
+    <div class="col-sm-6 px-0 d-none d-sm-block">
+      <div class="text-center">
+        <img
+          src="/assets/left_pic.jpg"
+          class="img-fluid w-100 h-100 overflow-hidden"
+          alt="here Photo"
+        />
+      </div>
+    </div>
+    <div class="col-sm-6 auth-form-section">
+      <div class="form-section py-5 m-auto">
+        <div class="auth-wrapper">
+          <h2 class="welcome-msg text-center text-warning">Sign Up</h2>
+          <p class="auth-signup-text text-muted text-center">
+            Enter details to create your account
+          </p>
+          <!-- start form input -->
+
+          <div class="w-50 m-auto">
+            <div *ngIf="error.length > 0" class="alert alert-danger">
+              <span> {{ error }} </span>
+            </div>
+            <form
+              [formGroup]="registerForm"
+              (ngSubmit)="submitRegisterForm(registerForm)"
+            >
+              <div class="form-group">
+                <label for="first_name">First name</label>
+                <input
+                  formControlName="first_name"
+                  class="form-control"
+                  type="text"
+                  id="first_name"
+                />
+                <div
+                  class="alert my-2 alert-danger"
+                  *ngIf="
+                    registerForm.get('first_name')!.errors != null &&
+                    registerForm.get('first_name')!.touched
+                  "
+                >
+                  <span
+                    *ngIf="registerForm.get('first_name')!.errors?.['required']"
+                  >
+                    first name is requred
+                  </span>
+                  <span
+                    *ngIf="registerForm.get('first_name')!.errors?.['minlength']"
+                  >
+                    first name min length 3
+                  </span>
+                  <span
+                    *ngIf="registerForm.get('first_name')!.errors?.['maxlength']"
+                  >
+                    first name max length 10
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastt_name">Last name</label>
+                <input
+                  formControlName="last_name"
+                  class="form-control"
+                  type="text"
+                  id="last_name"
+                />
+                <div
+                  class="alert my-2 alert-danger"
+                  *ngIf="
+                    registerForm.get('last_name')!.errors != null &&
+                    registerForm.get('last_name')!.touched
+                  "
+                >
+                  <span
+                    *ngIf="registerForm.get('last_name')!.errors?.['required']"
+                  >
+                    Last name is requred
+                  </span>
+                  <span
+                    *ngIf="registerForm.get('last_name')!.errors?.['minlength']"
+                  >
+                    Last name min length 3
+                  </span>
+                  <span
+                    *ngIf="registerForm.get('last_name')!.errors?.['maxlength']"
+                  >
+                    Last name max length 10
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  formControlName="email"
+                  class="form-control"
+                  type="email"
+                  id="email"
+                />
+                <div
+                  class="alert my-2 alert-danger"
+                  *ngIf="
+                    registerForm.get('email')!.errors != null &&
+                    registerForm.get('email')!.touched
+                  "
+                >
+                  <span *ngIf="registerForm.get('email')!.errors?.['required']">
+                    Email is requred
+                  </span>
+                  <span *ngIf="registerForm.get('email')!.errors?.['email']">
+                    Email Not match
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                  formControlName="age"
+                  class="form-control"
+                  type="number"
+                  id="age"
+                />
+                <div
+                  class="alert my-2 alert-danger"
+                  *ngIf="
+                    registerForm.get('age')!.errors != null &&
+                    registerForm.get('age')!.touched
+                  "
+                >
+                  <span *ngIf="registerForm.get('age')!.errors?.['required']">
+                    Age is requred
+                  </span>
+                  <span *ngIf="registerForm.get('age')!.errors?.['min']">
+                    Age less than 16
+                  </span>
+                  <span *ngIf="registerForm.get('age')!.errors?.['max']">
+                    Age more than 70
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  formControlName="password"
+                  class="form-control"
+                  type="password"
+                  id="password"
+                />
+                <div
+                  class="alert my-2 alert-danger"
+                  *ngIf="
+                    registerForm.get('password')!.errors != null &&
+                    registerForm.get('password')!.touched
+                  "
+                >
+                  <span
+                    *ngIf="registerForm.get('password')!.errors?.['required']"
+                  >
+                    Password is requred
+                  </span>
+                  <span
+                    *ngIf="registerForm.get('password')!.errors?.['minlength']"
+                  >
+                    Password min length 4
+                  </span>
+                  <span
+                    *ngIf="registerForm.get('password')!.errors?.['pattern']"
+                  >
+                    Password not match
+                  </span>
+                </div>
+              </div>
+              <div class="flex-sb-m w-full m-auto p-b-20 text-center">
+                <div>
+                  <span
+                    >Already Registered ?
+                    <a routerLink="/login" class="text-warning">
+                      Login
+                    </a></span
+                  >
+                </div>
+              </div>
+              <div class="text-center py-2">
+                <button
+                  [disabled]="registerForm.invalid"
+                  class="btn btn-info w-50 m-auto rounded-pill"
+                  type="submit"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- end form -->
+          <h6 class="social-login-title text-center text-warning">OR</h6>
+          <ul class="list-unstyled social-icon mb-0 mt-3 text-center">
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded">
+                <i class="fab fa-google"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded flex-c-m">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
