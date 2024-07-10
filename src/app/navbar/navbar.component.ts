@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { toArray } from 'rxjs';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +9,12 @@ import { toArray } from 'rxjs';
 })
 export class NavbarComponent {
   isLogin: boolean = false;
-  constructor(private _AuthService: AuthService) {
+  categoris: any[] = [];
+  selectedCategory = '';
+  constructor(
+    private _AuthService: AuthService,
+    private _ProductsService: ProductsService
+  ) {
     _AuthService.currentUser.subscribe(() => {
       if (_AuthService.currentUser.getValue() != null) {
         this.isLogin = true;
@@ -17,8 +22,17 @@ export class NavbarComponent {
         this.isLogin = false;
       }
     });
+
+    _ProductsService.getAllCategories().subscribe((data) => {
+      this.categoris = data;
+    });
   }
+
   isLogOut() {
     this._AuthService.logout();
+  }
+  categoryName(cat: string) {
+    this.selectedCategory = cat;
+    console.log(cat);
   }
 }

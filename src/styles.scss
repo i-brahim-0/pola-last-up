@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500&display=swap');
 $bgColor:#131722;
-$lightBgCColor:#24baef;
+$lightBgColor:#24baef;
 $bgTransparent:rgba(36,186,239,.6);
 $fontaColor:#fff;
 $borderColor:#a8a8a83d;
@@ -31,3 +31,10 @@ a:hover{
 .second-color{
   color: $secondFontColor;
 }
+.bg-navbar{
+  background-color: $bgColor
+}
+.light-bg{
+  background-color: $lightBgColor;
+}
+

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg sticky-top">
-  <a class="navbar-brand" routerLink="products">Polaris</a>
+<nav class="navbar navbar-expand-lg sticky-top bg-navbar">
+  <a class="navbar-brand text-warning" routerLink="products">Polaris</a>
   <button
     class="navbar-toggler bg-light"
     type="button"
@@ -37,10 +37,17 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <ul class="list-group">
+            <li *ngFor="let category of categoris" class="list-group-action">
+              <a
+                class="dropdown-item"
+                (click)="categoryName(category)"
+                routerLink="{{ category }}"
+              >
+                {{ category }}</a
+              >
+            </li>
+          </ul>
         </div>
       </li>
       <!-- end Dropdown list  -->

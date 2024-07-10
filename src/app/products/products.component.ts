@@ -8,9 +8,15 @@ import { ProductsService } from '../products.service';
 })
 export class ProductsComponent implements OnInit {
   products: any[] = [];
+  productsCat: any[] = [];
+  category = '';
   constructor(private _ProductsService: ProductsService) {
     _ProductsService.getAllProducts().subscribe((data) => {
       this.products = data;
+    });
+
+    _ProductsService.getProductsByCategory(this.category).subscribe((data) => {
+      this.productsCat = data;
     });
   }
   ngOnInit(): void {}

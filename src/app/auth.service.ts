@@ -27,7 +27,6 @@ export class AuthService {
   saveCurrentUser() {
     let token: any = localStorage.getItem('userToken');
     this.currentUser.next(jwtDecode(token));
-    console.log(this.currentUser);
   }
   logout() {
     this.currentUser.next(null);
