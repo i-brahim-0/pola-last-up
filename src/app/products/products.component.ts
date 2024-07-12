@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 
 @Component({
@@ -6,18 +6,30 @@ import { ProductsService } from '../products.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: any[] = [];
   productsCat: any[] = [];
-  category = '';
-  constructor(private _ProductsService: ProductsService) {
-    _ProductsService.getAllProducts().subscribe((data) => {
+  slectedCategory: string = '';
+  sub: any;
+
+  constructor(private _ProductsService: ProductsService) {}
+
+  ngOnInit(): void {
+    this._ProductsService.getAllProducts().subscribe((data) => {
       this.products = data;
     });
 
-    _ProductsService.getProductsByCategory(this.category).subscribe((data) => {
-      this.productsCat = data;
+    this.sub = this._ProductsService.currentCategory.subscribe((data) => {
+      this.slectedCategory = data;
+      this._ProductsService
+        .getProductsByCategory(this.slectedCategory)
+        .subscribe((data) => {
+          this.products = data;
+        });
     });
   }
-  ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }

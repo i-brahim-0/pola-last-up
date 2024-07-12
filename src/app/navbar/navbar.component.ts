@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ProductsService } from '../products.service';
 
@@ -7,10 +7,10 @@ import { ProductsService } from '../products.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   isLogin: boolean = false;
   categoris: any[] = [];
-  selectedCategory = '';
+
   constructor(
     private _AuthService: AuthService,
     private _ProductsService: ProductsService
@@ -28,11 +28,16 @@ export class NavbarComponent {
     });
   }
 
+  ngOnInit(): void {}
+
+  selectCategory(cat: any) {
+    this._ProductsService.storCategory(cat);
+  }
+
   isLogOut() {
     this._AuthService.logout();
   }
-  categoryName(cat: string) {
-    this.selectedCategory = cat;
-    console.log(cat);
+  isGallary() {
+    // this._ProductsService.gallary();
   }
 }

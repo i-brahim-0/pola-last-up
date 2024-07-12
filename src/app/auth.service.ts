@@ -8,12 +8,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  currentUser = new BehaviorSubject(null);
+
   constructor(private _HttpClient: HttpClient, private _Router: Router) {
     if (localStorage.getItem('userToken') != null) {
       this.saveCurrentUser();
     }
   }
-  currentUser = new BehaviorSubject(null);
 
   register(formData: any): Observable<any> {
     return this._HttpClient.post('https://fakestoreapi.com/users', formData);

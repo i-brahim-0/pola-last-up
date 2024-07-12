@@ -20,7 +20,13 @@
         <a *ngIf="isLogin" class="nav-link" routerLink="home">Home</a>
       </li>
       <li class="nav-item">
-        <a *ngIf="isLogin" class="nav-link" routerLink="products">Gallary</a>
+        <a
+          *ngIf="isLogin"
+          class="nav-link"
+          (click)="isGallary()"
+          routerLink="products"
+          >Gallary</a
+        >
       </li>
       <!-- start Dropdown list -->
       <li class="nav-item dropdown">
@@ -41,8 +47,8 @@
             <li *ngFor="let category of categoris" class="list-group-action">
               <a
                 class="dropdown-item"
-                (click)="categoryName(category)"
-                routerLink="{{ category }}"
+                (click)="selectCategory(category)"
+                [routerLink]="['/products', category]"
               >
                 {{ category }}</a
               >

@@ -7,13 +7,28 @@ import { RegisterComponent } from './register/register.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth.guard';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'products', canActivate: [AuthGuard], component: ProductsComponent },
+  {
+    path: 'products',
+    canActivate: [AuthGuard],
+    component: ProductsComponent,
+  },
+  {
+    path: 'prodetails/:id',
+    canActivate: [AuthGuard],
+    component: ProductDetailsComponent,
+  },
+  {
+    path: 'products/:cat',
+    canActivate: [AuthGuard],
+    component: ProductsComponent,
+  },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent },
 ];

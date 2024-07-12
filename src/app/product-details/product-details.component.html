@@ -1,1 +1,49 @@
-<p>product-details works!</p>
+<div class="container d-flex justify-content-center">
+  <div class="w-100 h-50">
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4 d-flex justify-content-center">
+          <img
+            [src]="productDetails.image"
+            class="img-fluid rounded-start h-100"
+            [alt]="productDetails.image"
+          />
+        </div>
+        <div class="col-md-8 d-flex align-items-center">
+          <div class="card-body">
+            <h5 class="card-title p-4 my-2 bg-secondary">
+              {{ productDetails.title }}
+            </h5>
+            <div class="price text-center font-weight-bold py-1 bg-primary">
+              <span>{{ productDetails.category }}</span>
+            </div>
+            <p class="card-text p-4 my-2 bg-navbar">
+              {{ productDetails.description }}
+            </p>
+            <div class="price text-center font-weight-bold py-1 my-2 bg-danger">
+              <span>{{ productDetails.price | currency : "EGP  " }}</span>
+            </div>
+            <ul class="list-grou list-group-flush p-0">
+              <div class="d-flex justify-content-between text-center">
+                <li class="list-group-item bg-success w-50 mr-1">
+                  Rate :
+                  {{ productDetails.rating.rate }}
+                </li>
+                <li class="list-group-item bg-success w-50 ml-1">
+                  Count : {{ productDetails.rating.count }}
+                </li>
+              </div>
+            </ul>
+
+            <div class="action text-center my-2">
+              <button class="btn btn-info mx-1 rounded-pill">
+                <i class="fa-solid fa-cart-plus"></i>
+                <a class="px-1">Add to Cart</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
