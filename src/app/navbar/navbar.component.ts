@@ -37,7 +37,4 @@ export class NavbarComponent implements OnInit {
   isLogOut() {
     this._AuthService.logout();
   }
-  isGallary() {
-    // this._ProductsService.gallary();
-  }
 }

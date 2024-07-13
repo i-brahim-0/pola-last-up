@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +34,4 @@ export class ProductsService implements OnInit {
       'https://fakestoreapi.com/products/category/' + category
     );
   }
-
-  // gallary() {
-  //   this.isCategory.next(null);
-  // }
 }
