@@ -34,4 +34,16 @@ export class ProductsService implements OnInit {
       'https://fakestoreapi.com/products/category/' + category
     );
   }
+
+  getLimit(range?: any): Observable<any> {
+    return this._HttpClient.get(
+      'https://fakestoreapi.com/products?limit=' + range
+    );
+  }
+
+  getSortBy(val?: any): Observable<any> {
+    return this._HttpClient.get(
+      'https://fakestoreapi.com/products?sort=' + val
+    );
+  }
 }
