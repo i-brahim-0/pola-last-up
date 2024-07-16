@@ -38,8 +38,8 @@ export class RegisterComponent implements OnInit {
 
   submitRegisterForm(formValue: FormGroup) {
     this._AuthService.register(formValue.value).subscribe((response) => {
-      if (response.id == 11) {
-        console.log(response.id);
+      if (response) {
+        alert(response.id);
         this._Router.navigate(['/login']);
       } else {
         this.error = response; // response from APi

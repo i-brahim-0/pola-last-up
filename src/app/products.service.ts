@@ -46,4 +46,8 @@ export class ProductsService implements OnInit {
       'https://fakestoreapi.com/products?sort=' + val
     );
   }
+
+  addPoduct(formData: any): Observable<any> {
+    return this._HttpClient.post('https://fakestoreapi.com/products', formData);
+  }
 }
