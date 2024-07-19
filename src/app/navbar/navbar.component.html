@@ -51,9 +51,33 @@
         </div>
       </li>
       <!-- end Dropdown list  -->
-      <li class="nav-item">
-        <a class="nav-link" routerLink="add">Add products</a>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          routerLinkActive="active"
+        >
+          Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="list-group">
+            <li class="list-group-action">
+              <a class="dropdown-item" routerLink="admin"> Main </a>
+            </li>
+            <li class="list-group-action">
+              <a class="dropdown-item" routerLink="add"> Add Product</a>
+            </li>
+          </ul>
+        </div>
       </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="add">Add products</a>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" routerLink="about">About</a>
       </li>

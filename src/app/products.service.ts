@@ -50,4 +50,8 @@ export class ProductsService implements OnInit {
   addPoduct(formData: any): Observable<any> {
     return this._HttpClient.post('https://fakestoreapi.com/products', formData);
   }
+
+  deleteProduct(id: string): Observable<any> {
+    return this._HttpClient.delete('https://fakestoreapi.com/products/' + id);
+  }
 }
