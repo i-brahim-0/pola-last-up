@@ -96,6 +96,7 @@
                 class="btn btn-primary"
                 (click)="edit()"
                 (click)="sendProduct(product)"
+                [value]="product.id"
               >
                 edit
               </button>
@@ -103,7 +104,7 @@
             <td>
               <button
                 (click)="itemDel($event)"
-                value="{{ product.id }}"
+                [value]="product.id"
                 type="button"
                 class="btn btn-danger"
               >

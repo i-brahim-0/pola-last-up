@@ -1,15 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from '../../products.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { EditProductComponent } from '../edit-product/edit-product.component';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-page',
@@ -17,8 +9,6 @@ import { Subject } from 'rxjs';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent implements OnInit, AfterViewInit {
-  @ViewChild(EditProductComponent)
-  editProdChild!: EditProductComponent;
   products: any[] = [];
   productsCat: any[] = [];
   slectedCategory: string = '';
@@ -29,12 +19,8 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
   onEdit = false;
   onAdd = false;
   prdToEdit: any;
-  sentPrd: any;
 
-  constructor(
-    private _ProductsService: ProductsService,
-    private fb: FormBuilder
-  ) {}
+  constructor(private _ProductsService: ProductsService) {}
   ngAfterViewInit(): void {}
 
   sendProduct(prd: any) {

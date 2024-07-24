@@ -1,15 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../products.service';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-edit-product',
@@ -17,10 +8,9 @@ import { BehaviorSubject, Subject } from 'rxjs';
   styleUrls: ['./edit-product.component.scss'],
 })
 export class EditProductComponent implements OnInit, OnChanges {
-  @Input() action: string = '';
   @Input() prdToEdit: any;
   @Input() idPrd: any;
-  @Output() myEvent = new EventEmitter<any>();
+
   editProductForm!: FormGroup;
 
   constructor(
@@ -37,20 +27,34 @@ export class EditProductComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.editProductForm.get('title')?.setValue(this.prdToEdit.title);
-    this.editProductForm.get('price')?.setValue(this.prdToEdit.price);
-    this.editProductForm.get('category')?.setValue(this.prdToEdit.category);
-    this.editProductForm
-      .get('description')
-      ?.setValue(this.prdToEdit.description);
+    // console.log(this.idPrd);
+    this.editProductForm.patchValue({
+      title: this.prdToEdit.title,
+      category: this.prdToEdit.category,
+      price: this.prdToEdit.price,
+      description: this.prdToEdit.description,
+      // image:this.prdToEdit.image,
+    });
+
+    this.onSubmit();
+
+    // OR >>
+
+    // this.editProductForm.get('title')?.setValue(this.prdToEdit.title);
+    // this.editProductForm.get('price')?.setValue(this.prdToEdit.price);
+    // this.editProductForm.get('category')?.setValue(this.prdToEdit.category);
+    // this.editProductForm
+    //   .get('description')
+    //   ?.setValue(this.prdToEdit.description);
     // this.editProductForm.get('image')?.setValue(this.prdToEdit.image);
   }
   ngOnInit(): void {}
 
   onSubmit() {
-    this._ProductsService
-      .editProduct(this.idPrd, this.prdToEdit)
-      .subscribe((res) => {});
-    console.log('Form Value', this.editProductForm.value);
+    let item = this.editProductForm;
+    let id = this.prdToEdit.id;
+    this._ProductsService.editProduct(id, item.value).subscribe((res) => {
+      console.log('will Update product id No : ' + res.id);
+    });
   }
 }

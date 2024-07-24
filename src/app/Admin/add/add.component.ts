@@ -23,14 +23,12 @@ export class AddComponent {
       description: [''],
       image: [''],
     });
-    // this.editProduct(this.editPrd);
   }
   onSubmit() {
     this._ProductsService
       .addPoduct(this.addProductForm.value)
       .subscribe((response) => {
-        alert(response.id);
+        alert('Success add new product id No : ' + response.id);
       });
-    console.log('New Product is : ', this.addProductForm.value);
   }
 }
