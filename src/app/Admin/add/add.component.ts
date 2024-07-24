@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../products.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss'],
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss'],
 })
-export class AddProductComponent {
+export class AddComponent {
+  @Input() action: string = '';
+  @Input() editPrd: any;
   addProductForm: FormGroup;
 
   constructor(
@@ -15,12 +17,13 @@ export class AddProductComponent {
     private _ProductsService: ProductsService
   ) {
     this.addProductForm = this.fb.group({
-      productName: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       category: [''],
       price: ['', [Validators.required]],
       description: [''],
       image: [''],
     });
+    // this.editProduct(this.editPrd);
   }
   onSubmit() {
     this._ProductsService
@@ -28,6 +31,6 @@ export class AddProductComponent {
       .subscribe((response) => {
         alert(response.id);
       });
-    console.log('Form Value', this.addProductForm.value);
+    console.log('New Product is : ', this.addProductForm.value);
   }
 }

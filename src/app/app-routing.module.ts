@@ -8,7 +8,6 @@ import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth.guard';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { AddProductComponent } from './Admin/add-product/add-product.component';
 import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
 
 const routes: Routes = [
@@ -26,11 +25,17 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: AdminPageComponent,
   },
-  {
-    path: 'add',
-    canActivate: [AuthGuard],
-    component: AddProductComponent,
-  },
+  // {
+  //   path: 'add',
+  //   canActivate: [AuthGuard],
+  //   component: AdminPageComponent,
+  // },
+  // {
+  //   path: 'edit',
+  //   canActivate: [AuthGuard],
+  //   component: AdminPageComponent,
+  // },
+
   {
     path: 'prodetails/:id',
     canActivate: [AuthGuard],

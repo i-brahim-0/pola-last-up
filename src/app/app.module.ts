@@ -15,13 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { SeeMorePipe } from './see-more.pipe';
 import { QuickViewComponent } from './quick-view/quick-view.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { AddProductComponent } from './Admin/add-product/add-product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
+import { EditProductComponent } from './Admin/edit-product/edit-product.component';
+import { AddComponent } from './Admin/add/add.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,9 @@ import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
     SeeMorePipe,
     QuickViewComponent,
     ProductDetailsComponent,
-    AddProductComponent,
     AdminPageComponent,
+    EditProductComponent,
+    AddComponent,
   ],
   imports: [
     BrowserModule,

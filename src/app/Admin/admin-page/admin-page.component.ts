@@ -1,13 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ProductsService } from '../../products.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EditProductComponent } from '../edit-product/edit-product.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss'],
 })
-export class AdminPageComponent implements OnInit {
-  [x: string]: any;
+export class AdminPageComponent implements OnInit, AfterViewInit {
+  @ViewChild(EditProductComponent)
+  editProdChild!: EditProductComponent;
   products: any[] = [];
   productsCat: any[] = [];
   slectedCategory: string = '';
@@ -15,8 +26,29 @@ export class AdminPageComponent implements OnInit {
   sorter: any;
   idProduct: string = '';
   doneDelete: string = '';
+  onEdit = false;
+  onAdd = false;
+  prdToEdit: any;
+  sentPrd: any;
 
-  constructor(private _ProductsService: ProductsService) {}
+  constructor(
+    private _ProductsService: ProductsService,
+    private fb: FormBuilder
+  ) {}
+  ngAfterViewInit(): void {}
+
+  sendProduct(prd: any) {
+    this.prdToEdit = prd;
+  }
+
+  edit() {
+    this.onEdit = true;
+    this.onAdd = false;
+  }
+  add() {
+    this.onAdd = true;
+    this.onEdit = false;
+  }
 
   getRange(numb: any) {
     this.range = numb.target.value;

@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { ProductsService } from '../products.service';
 
 // import { ActivatedRoute } from '@angular/router';
@@ -8,7 +14,7 @@ import { ProductsService } from '../products.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
   products: any[] = [];
   productsCat: any[] = [];
   slectedCategory: string = '';
@@ -22,6 +28,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {
     // this.myCategoryFromRout = this._ActivatedRoute.snapshot.params['cat'];
   }
+  ngOnChanges(): void {}
 
   getRange(numb: any) {
     this.range = numb.target.value;
@@ -49,7 +56,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.products = data;
         });
     });
-
     // this._ProductsService
     //   .getProductsByCategory(this.myCategoryFromRout)
     //   .subscribe((data) => {
