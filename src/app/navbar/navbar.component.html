@@ -33,6 +33,7 @@
           aria-haspopup="true"
           aria-expanded="false"
           routerLinkActive="active"
+          *ngIf="isLogin"
         >
           Categories
         </a>
@@ -61,6 +62,7 @@
           aria-haspopup="true"
           aria-expanded="false"
           routerLinkActive="active"
+          *ngIf="isLogin"
         >
           Admin
         </a>
@@ -68,9 +70,6 @@
           <ul class="list-group">
             <li class="list-group-action">
               <a class="dropdown-item" routerLink="admin"> Main </a>
-            </li>
-            <li class="list-group-action">
-              <a class="dropdown-item" routerLink="add"> Add Product</a>
             </li>
           </ul>
         </div>
@@ -82,6 +81,7 @@
         <a class="nav-link" routerLink="about">About</a>
       </li>
     </ul>
+
     <div class="form-inline">
       <form class="form-inline my-2 my-lg-0">
         <input
@@ -91,11 +91,11 @@
           aria-label="Search"
         />
       </form>
-      <div class="social-media">
-        <i class="fab mx-2 fa-facebook"></i>
-        <i class="fab mx-2 fa-youtube"></i>
-        <i class="fab mx-2 fa-twitter"></i>
-        <i class="fab mx-2 fa-instagram"></i>
+      <div class="social-media nav-link">
+        <a routerLink=""> <i class="fab mx-2 fa-facebook"></i></a>
+        <a routerLink=""> <i class="fab mx-2 fa-youtube"></i></a>
+        <a routerLink=""> <i class="fab mx-2 fa-twitter"></i></a>
+        <a routerLink=""> <i class="fab mx-2 fa-instagram"></i></a>
       </div>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -104,6 +104,14 @@
         <li class="nav-item">
           <a *ngIf="!isLogin" class="nav-link" routerLink="register">Regiser</a>
         </li>
+        <div>
+          <li class="nav-item">
+            <a *ngIf="isLogin" class="nav-link" routerLink="cart">
+              Cart
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+          </li>
+        </div>
         <li class="nav-item">
           <a *ngIf="isLogin" (click)="isLogOut()" routerLink="" class="nav-link"
             >Logout</a

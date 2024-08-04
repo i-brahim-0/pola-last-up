@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
 import { EditProductComponent } from './Admin/edit-product/edit-product.component';
 import { AddComponent } from './Admin/add/add.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AddComponent } from './Admin/add/add.component';
     AdminPageComponent,
     EditProductComponent,
     AddComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

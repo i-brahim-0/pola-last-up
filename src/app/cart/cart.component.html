@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center mt-5">
+    <table class="table table-striped text-dark bg-light">
+      <thead class="text-center">
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col " class="w-25">Quantity</th>
+          <th scope="col">Total</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let item of myCart">
+          <td scope="row">
+            <img
+              style="width: 30px; height: 30px"
+              [src]="item.item.image"
+              alt="img"
+            />
+          </td>
+          <td>{{ item.item.title | seeMore : 3 }}</td>
+          <td>{{ item.item.price }}</td>
+          <td
+            class="d-flex justify-content-center align-items-center text-center"
+            scope="col"
+          >
+            <h6 class="m-0">-</h6>
+            <input
+              type="number"
+              class="form-control w-25 mx-2"
+              [(ngModel)]="item.quantity"
+            />
+            <h6 class="m-0">+</h6>
+          </td>
+          <td></td>
+          <td>
+            <button type="button" class="btn btn-danger">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Products Table end -->
+  </div>
+</div>

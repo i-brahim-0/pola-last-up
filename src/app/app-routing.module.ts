@@ -9,6 +9,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth.guard';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
+import { EditProductComponent } from './Admin/edit-product/edit-product.component';
+import { AddComponent } from './Admin/add/add.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,15 +28,20 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: AdminPageComponent,
   },
+  {
+    path: 'cart',
+    canActivate: [AuthGuard],
+    component: CartComponent,
+  },
   // {
   //   path: 'add',
   //   canActivate: [AuthGuard],
-  //   component: AdminPageComponent,
+  //   component: AddComponent,
   // },
   // {
   //   path: 'edit',
   //   canActivate: [AuthGuard],
-  //   component: AdminPageComponent,
+  //   component: EditProductComponent,
   // },
 
   {

@@ -12,6 +12,7 @@ body{
   font-family: "Montserrat Alternates", sans-serif;
   background-color: $bgColor;
   color: $fontaColor;
+  text-decoration: none;
 }
 a{
   font-size: 18px;
@@ -22,6 +23,9 @@ a:hover{
   font-size: 18px;
   color: $secondFontColor;
   text-decoration: none;
+}
+li{
+  list-style-type: none;
 }
 
 .brdr{

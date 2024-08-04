@@ -2,3 +2,20 @@ img {
   height: 200px;
   border-radius: 10px;
 }
+.body{
+
+}
+.img-after::after{
+  content: 'view';
+  display: flex;
+  position: relative;
+  top: 2px;
+  right: 45px;
+  background-color:cadetblue;
+  color: red;
+  height: 32px;
+  padding: 4px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}

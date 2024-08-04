@@ -10,6 +10,8 @@ import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
 export class EditProductComponent implements OnInit, OnChanges {
   @Input() prdToEdit: any;
   @Input() idPrd: any;
+  base64: any;
+  categoris: any[] = [];
 
   editProductForm!: FormGroup;
 
@@ -24,6 +26,10 @@ export class EditProductComponent implements OnInit, OnChanges {
       description: [''],
       image: [''],
     });
+
+    _ProductsService.getAllCategories().subscribe((data) => {
+      this.categoris = data;
+    });
   }
 
   ngOnChanges(): void {
@@ -33,10 +39,9 @@ export class EditProductComponent implements OnInit, OnChanges {
       category: this.prdToEdit.category,
       price: this.prdToEdit.price,
       description: this.prdToEdit.description,
-      // image:this.prdToEdit.image,
+      // image: this.prdToEdit.image,
+      image: (this.base64 = this.prdToEdit.image),
     });
-
-    this.onSubmit();
 
     // OR >>
 
@@ -54,7 +59,16 @@ export class EditProductComponent implements OnInit, OnChanges {
     let item = this.editProductForm;
     let id = this.prdToEdit.id;
     this._ProductsService.editProduct(id, item.value).subscribe((res) => {
-      console.log('will Update product id No : ' + res.id);
+      alert('will Update product id No : ' + res.id);
     });
+  }
+
+  handleUpload(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.base64 = reader.result;
+    };
   }
 }

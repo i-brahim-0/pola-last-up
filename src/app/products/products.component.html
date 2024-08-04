@@ -40,6 +40,7 @@
     </div>
   </nav>
   <!-- End sort -->
+
   <div class="row py-5">
     <div class="col-md-4 d-flex align-items-center">
       <div>
@@ -53,8 +54,8 @@
     </div>
     <div *ngFor="let product of products" class="col-md-3">
       <div class="body my-2">
-        <a [routerLink]="['/prodetails', product.id]"
-          ><img class="w-100" [src]="product.image" [alt]="product.title" />
+        <a [routerLink]="['/prodetails', product.id]">
+          <img class="w-100" [src]="product.image" [alt]="product.title" />
           <h3
             class="my-2 h6 text-center pt-1 bg-secondary px-2"
             style="height: 30px"
@@ -66,10 +67,29 @@
           <span>{{ product.price | currency : "EGP  " }}</span>
         </div>
         <div class="action text-center my-2">
-          <button class="btn btn-info mx-1 rounded-pill">
+          <button
+            class="btn btn-info mx-1 rounded-pill"
+            (click)="addToCatr(product)"
+          >
             <i class="fa-solid fa-cart-plus"></i>
             <a class="px-1">Add to Cart</a>
           </button>
+          <!-- <div
+            *ngIf="addBtn"
+            class="d-flex align-items-center justify-content-center"
+          >
+            <input
+              type="number"
+              class="form-control w-25"
+              [(ngModel)]="count"
+            />
+            <button
+              class="btn btn-info mx-1 rounded-pill"
+              (click)="addToCatr(product); addBtn = false"
+            >
+              <a class="px-1">Add</a>
+            </button>
+          </div> -->
         </div>
       </div>
     </div>

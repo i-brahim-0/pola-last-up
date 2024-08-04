@@ -22,6 +22,9 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
   sorter: any;
   // myCategoryFromRout: string = '';
   sub: any;
+  cartProducts: any[] = [];
+  count = 1;
+  addBtn = false;
 
   constructor(
     private _ProductsService: ProductsService // private _ActivatedRoute: ActivatedRoute
@@ -61,6 +64,34 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
     //   .subscribe((data) => {
     //     this.products = data;
     //   });
+  }
+
+  addToCatr(item: any) {
+    if ('myCart' in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem('myCart')!);
+      let exist = this.cartProducts.find((prd) => prd.item.id == item.id);
+      if (exist) {
+        alert('this product in cart alredy');
+        // this.cartProducts.pop();
+        // localStorage.removeItem(item.id);
+        // this.quntit++;
+        // this.cartProducts.push({ item, quantity: this.quntit });
+        // localStorage.setItem('myCart', JSON.stringify(this.cartProducts));
+      } else {
+        // this.quntit = 1;
+        this.cartProducts.push({ item, quantity: this.count });
+        localStorage.setItem('myCart', JSON.stringify(this.cartProducts));
+      }
+    } else {
+      // this.quntit = 1;
+      this.cartProducts.push({ item, quantity: this.count });
+      localStorage.setItem('myCart', JSON.stringify(this.cartProducts));
+    }
+
+    console.log(this.cartProducts);
+    // console.log();
+    // console.log('Q' + this.quntit);
+    // console.log('C' + count);
   }
 
   ngOnDestroy(): void {
