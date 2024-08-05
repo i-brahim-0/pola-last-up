@@ -11,8 +11,9 @@
           <th scope="col">Delete</th>
         </tr>
       </thead>
+
       <tbody>
-        <tr class="text-center" *ngFor="let item of myCart">
+        <tr class="text-center" *ngFor="let item of myCart; let index = index">
           <td scope="row">
             <img
               style="width: 30px; height: 30px"
@@ -21,25 +22,45 @@
             />
           </td>
           <td>{{ item.item.title | seeMore : 3 }}</td>
-          <td>{{ item.item.price }}</td>
+          <td>{{ item.item.price | currency : "L.E " }}</td>
           <td
             class="d-flex justify-content-center align-items-center text-center"
             scope="col"
           >
-            <h6 class="m-0">-</h6>
+            <button class="m-0 px-2" (click)="minQuantity(index)">-</button>
             <input
+              [value]="item.quantity"
               type="number"
               class="form-control w-25 mx-2"
               [(ngModel)]="item.quantity"
             />
-            <h6 class="m-0">+</h6>
+            <button class="m-0 px-2" (click)="addQuantity(index)">+</button>
           </td>
-          <td></td>
+          <td>{{ item.quantity * item.item.price | currency : "L.E " }}</td>
           <td>
-            <button type="button" class="btn btn-danger">delete</button>
+            <button
+              (click)="removeItemCart(item.item.id)"
+              type="button"
+              class="btn btn-danger"
+            >
+              delete
+            </button>
           </td>
         </tr>
       </tbody>
+      <tfoot class="text-center">
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="text-center pt-3">
+          Total price :
+          <span class="text-danger font-weight-bolder px-2 py-1">
+            {{ totalPrice | currency : "L.E " }}</span
+          >
+        </th>
+        <th><button class="btn btn-success">Order Now</button></th>
+      </tfoot>
     </table>
     <!-- Products Table end -->
   </div>
