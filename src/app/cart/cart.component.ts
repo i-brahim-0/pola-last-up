@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
-import { ProductsService } from '../products.service';
-import { ProductsComponent } from '../products/products.component';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +10,7 @@ export class CartComponent implements OnInit, OnChanges {
   myCart: any[] = [];
   totalPrice = 0;
 
-  constructor() {
+  constructor(private _CartService: CartService) {
     this.getCatr();
   }
 
@@ -35,8 +34,16 @@ export class CartComponent implements OnInit, OnChanges {
     }
     this.getTotalPrice();
   }
+
+  changeQuantity() {
+    localStorage.setItem('myCart', JSON.stringify(this.myCart));
+    this.getTotalPrice();
+  }
+
   removeItemCart(id: number) {
-    alert(id);
+    this.myCart.splice(id, 1);
+    localStorage.setItem('myCart', JSON.stringify(this.myCart));
+    this.getTotalPrice();
   }
 
   getTotalPrice() {
@@ -44,5 +51,19 @@ export class CartComponent implements OnInit, OnChanges {
     for (let x in this.myCart) {
       this.totalPrice += this.myCart[x].item.price * this.myCart[x].quantity;
     }
+  }
+
+  addOrder() {
+    let products = this.myCart.map((item) => {
+      return [{ productId: item.item.id, quantity: item.quantity }];
+    });
+    let model = {
+      userId: '3',
+      date: new Date(),
+      products: products,
+    };
+    this._CartService.addCart(model).subscribe((res) => {
+      alert('Done Created New Cart');
+    });
   }
 }

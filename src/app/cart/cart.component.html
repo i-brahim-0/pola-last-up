@@ -32,6 +32,7 @@
               [value]="item.quantity"
               type="number"
               class="form-control w-25 mx-2"
+              (change)="changeQuantity()"
               [(ngModel)]="item.quantity"
             />
             <button class="m-0 px-2" (click)="addQuantity(index)">+</button>
@@ -39,7 +40,7 @@
           <td>{{ item.quantity * item.item.price | currency : "L.E " }}</td>
           <td>
             <button
-              (click)="removeItemCart(item.item.id)"
+              (click)="removeItemCart(index)"
               type="button"
               class="btn btn-danger"
             >
@@ -59,7 +60,11 @@
             {{ totalPrice | currency : "L.E " }}</span
           >
         </th>
-        <th><button class="btn btn-success">Order Now</button></th>
+        <th>
+          <button (click)="addOrder()" class="btn btn-success">
+            Order Now
+          </button>
+        </th>
       </tfoot>
     </table>
     <!-- Products Table end -->
