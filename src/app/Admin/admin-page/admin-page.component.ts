@@ -54,14 +54,14 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
       this.products = data;
     });
 
-    this._ProductsService.currentCategory.subscribe((data) => {
-      this.slectedCategory = data;
-      this._ProductsService
-        .getProductsByCategory(this.slectedCategory)
-        .subscribe((data) => {
-          this.products = data;
-        });
-    });
+    // this._ProductsService.currentCategory.subscribe((data) => {
+    //   this.slectedCategory = data;
+    //   this._ProductsService
+    //     .getProductsByCategory(this.slectedCategory)
+    //     .subscribe((data) => {
+    //       this.products = data;
+    //     });
+    // });
   }
 
   itemDel(id: any) {

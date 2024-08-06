@@ -47,11 +47,23 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getAllPrd();
+    this.getPrdByCat();
+    // this._ProductsService
+    //   .getProductsByCategory(this.myCategoryFromRout)
+    //   .subscribe((data) => {
+    //     this.products = data;
+    //   });
+  }
+
+  getAllPrd() {
     this._ProductsService.getAllProducts().subscribe((data) => {
       this.products = data;
     });
+  }
 
-    this.sub = this._ProductsService.currentCategory.subscribe((data) => {
+  getPrdByCat() {
+    this._ProductsService.currentCategory.subscribe((data) => {
       this.slectedCategory = data;
       this._ProductsService
         .getProductsByCategory(this.slectedCategory)
@@ -59,11 +71,6 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
           this.products = data;
         });
     });
-    // this._ProductsService
-    //   .getProductsByCategory(this.myCategoryFromRout)
-    //   .subscribe((data) => {
-    //     this.products = data;
-    //   });
   }
 
   addToCatr(item: any) {
@@ -87,14 +94,9 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
       this.cartProducts.push({ item, quantity: this.count });
       localStorage.setItem('myCart', JSON.stringify(this.cartProducts));
     }
-
-    console.log(this.cartProducts);
-    // console.log();
-    // console.log('Q' + this.quntit);
-    // console.log('C' + count);
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 }

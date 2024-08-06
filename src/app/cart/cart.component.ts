@@ -62,7 +62,7 @@ export class CartComponent implements OnInit, OnChanges {
       date: new Date(),
       products: products,
     };
-    this._CartService.addCart(model).subscribe((res) => {
+    this._CartService.addCart(model).subscribe(() => {
       alert('Done Created New Cart');
     });
   }
