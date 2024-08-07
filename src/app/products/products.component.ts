@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
   products: any[] = [];
   productsCat: any[] = [];
   slectedCategory: string = '';
+  categoris: any[] = [];
   range: any;
   sorter: any;
   // myCategoryFromRout: string = '';
@@ -26,10 +27,17 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
   count = 1;
   addBtn = false;
 
+  catego = '';
+
   constructor(
     private _ProductsService: ProductsService // private _ActivatedRoute: ActivatedRoute
   ) {
     // this.myCategoryFromRout = this._ActivatedRoute.snapshot.params['cat'];
+    _ProductsService.getAllCategories().subscribe((data) => {
+      this.categoris = data;
+    });
+
+    this.getAllPrd();
   }
   ngOnChanges(): void {}
 
@@ -47,8 +55,6 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getAllPrd();
-    this.getPrdByCat();
     // this._ProductsService
     //   .getProductsByCategory(this.myCategoryFromRout)
     //   .subscribe((data) => {
@@ -62,15 +68,20 @@ export class ProductsComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
+  selectCategory(cat: any) {
+    this.catego = cat.target.value;
+    this.getPrdByCat();
+  }
   getPrdByCat() {
-    this._ProductsService.currentCategory.subscribe((data) => {
-      this.slectedCategory = data;
+    if (this.catego == 'all') {
+      this.getAllPrd();
+    } else {
       this._ProductsService
-        .getProductsByCategory(this.slectedCategory)
+        .getProductsByCategory(this.catego)
         .subscribe((data) => {
           this.products = data;
         });
-    });
+    }
   }
 
   addToCatr(item: any) {

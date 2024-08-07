@@ -1,10 +1,73 @@
 <div class="container">
   <!-- Start sort -->
-  <nav class="navbar navbar-expand-lg bg-navbar">
+  <!-- <nav class="navbar navbar-expand-lg bg-navbar">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="sorter navbar-collapse">
-        <div class="sort-by navbar-nav mr-auto">
-          <label class="pr-4" for="">Sort by :</label>
+      <div class="sort-by navbar-nav mr-auto">
+        <label class="pr-4" for="">Sort by :</label>
+        <select
+          class="form-select form-control-sm"
+          aria-label="Default select example"
+          (change)="getSorter($event)"
+        >
+          <option value="asc" selected>Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+        <div class="">
+          <label class="pr-4" for="">Categories :</label>
+          <select
+            class="form-select form-control-sm"
+            aria-label="Default select example"
+          >
+            <option value="asc" selected>all</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+      </div>
+      <div class="navbar-nav align-items-end">
+        <div class="limiter navbar-nav mr-auto">
+          <label class="pr-4">Show :</label>
+          <input
+            (change)="getRange($event)"
+            value=""
+            class="form-check-label w-25 mr-1"
+            type="number"
+          />
+          <select
+            class="custom-select"
+            class="form-select form-control-sm"
+            aria-label="Default select example"
+            (change)="getRange($event)"
+          >
+            <option value="30">All</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav> -->
+  <nav class="navbar navbar-expand-lg bg-navbar mt-5">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        class="row col-md-12 d-flex align-items-center justify-content-around"
+      >
+        <div class="col col-md-4">
+          <label class="pr-4 d-block" for="">Categories : </label>
+
+          <select
+            class="form-select form-control-sm"
+            aria-label="Default select example"
+            (change)="selectCategory($event)"
+          >
+            <option selected value="all">All</option>
+            <option *ngFor="let category of categoris" [value]="category">
+              <a>{{ category }}</a>
+            </option>
+          </select>
+        </div>
+        <div class="col col-md-4">
+          <label class="pr-4 d-block" for="">Sort by : </label>
           <select
             class="form-select form-control-sm"
             aria-label="Default select example"
@@ -14,27 +77,25 @@
             <option value="desc">Descending</option>
           </select>
         </div>
-        <div class="d-flex align-items-end">
-          <div class="limiter navbar-nav mr-auto">
-            <label class="pr-4">Show :</label>
-            <input
-              (change)="getRange($event)"
-              value=""
-              class="form-check-label w-25 mr-1"
-              type="number"
-            />
-            <select
-              class="custom-select"
-              class="form-select form-control-sm"
-              aria-label="Default select example"
-              (change)="getRange($event)"
-            >
-              <option value="30">All</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-            </select>
-          </div>
+        <div class="col col-md-4">
+          <label class="pr-4 d-block">Show :</label>
+          <input
+            (change)="getRange($event)"
+            value=""
+            class="form-check-label w-25 mr-1"
+            type="number"
+          />
+          <select
+            class="custom-select"
+            class="form-select form-control-sm"
+            aria-label="Default select example"
+            (change)="getRange($event)"
+          >
+            <option value="30">All</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
         </div>
       </div>
     </div>
@@ -46,9 +107,7 @@
       <div>
         <div class="brdr w-25 mb-4"></div>
         <h2>Choose what you like</h2>
-        <p class="second-color my-4 text-warning">
-          You now in {{ slectedCategory }}
-        </p>
+        <p class="second-color my-4 text-warning">You now in {{ catego }}</p>
         <div class="brdr w-75 mt-4"></div>
       </div>
     </div>
@@ -74,22 +133,6 @@
             <i class="fa-solid fa-cart-plus"></i>
             <a class="px-1">Add to Cart</a>
           </button>
-          <!-- <div
-            *ngIf="addBtn"
-            class="d-flex align-items-center justify-content-center"
-          >
-            <input
-              type="number"
-              class="form-control w-25"
-              [(ngModel)]="count"
-            />
-            <button
-              class="btn btn-info mx-1 rounded-pill"
-              (click)="addToCatr(product); addBtn = false"
-            >
-              <a class="px-1">Add</a>
-            </button>
-          </div> -->
         </div>
       </div>
     </div>

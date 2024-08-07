@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ProductsService } from '../products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private _AuthService: AuthService,
-    private _ProductsService: ProductsService
+    private _ProductsService: ProductsService,
+    private _Router: Router
   ) {
     _AuthService.currentUser.subscribe(() => {
       if (_AuthService.currentUser.getValue() != null) {
@@ -23,16 +25,22 @@ export class NavbarComponent implements OnInit {
       }
     });
 
-    _ProductsService.getAllCategories().subscribe((data) => {
-      this.categoris = data;
-    });
+    // _ProductsService.getAllCategories().subscribe((data) => {
+    //   this.categoris = data;
+    // });
+
+    this.gallary();
   }
 
   ngOnInit(): void {}
 
-  selectCategory(cat: any) {
-    this._ProductsService.storCategory(cat);
+  gallary() {
+    this._Router.navigate(['products']);
   }
+
+  // selectCategory(cat: any) {
+  //   this._ProductsService.storCategory(cat);
+  // }
 
   isLogOut() {
     this._AuthService.logout();

@@ -20,10 +20,16 @@
         <a *ngIf="isLogin" class="nav-link" routerLink="home">Home</a>
       </li>
       <li class="nav-item">
-        <a *ngIf="isLogin" class="nav-link" routerLink="products">Gallary</a>
+        <a
+          *ngIf="isLogin"
+          (click)="gallary()"
+          class="nav-link"
+          routerLink="products"
+          >Gallary</a
+        >
       </li>
       <!-- start Dropdown list -->
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
           href="#"
@@ -50,7 +56,7 @@
             </li>
           </ul>
         </div>
-      </li>
+      </li> -->
       <!-- end Dropdown list  -->
       <li class="nav-item dropdown">
         <a
@@ -83,9 +89,18 @@
       <!-- <li class="nav-item">
         <a class="nav-link" routerLink="add">Add products</a>
       </li> -->
+
       <li class="nav-item">
         <a class="nav-link" routerLink="about">About</a>
       </li>
+      <div class="ml-5">
+        <li class="nav-item">
+          <a *ngIf="isLogin" class="nav-link text-warning" routerLink="cart">
+            Cart
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+        </li>
+      </div>
     </ul>
 
     <div class="form-inline">
@@ -110,14 +125,7 @@
         <li class="nav-item">
           <a *ngIf="!isLogin" class="nav-link" routerLink="register">Regiser</a>
         </li>
-        <div>
-          <li class="nav-item">
-            <a *ngIf="isLogin" class="nav-link" routerLink="cart">
-              Cart
-              <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-          </li>
-        </div>
+
         <li class="nav-item">
           <a *ngIf="isLogin" (click)="isLogOut()" routerLink="" class="nav-link"
             >Logout</a

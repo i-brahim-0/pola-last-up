@@ -6,16 +6,16 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductsService implements OnInit {
-  private isCategory = new Subject<any>();
-  currentCategory = this.isCategory.asObservable();
+  // private isCategory = new Subject<any>();
+  // currentCategory = this.isCategory.asObservable();
 
   constructor(private _HttpClient: HttpClient) {}
 
   ngOnInit(): void {}
 
-  storCategory(data: any) {
-    this.isCategory.next(data);
-  }
+  // storCategory(data: any) {
+  //   this.isCategory.next(data);
+  // }
 
   getAllProducts(): Observable<any> {
     return this._HttpClient.get('https://fakestoreapi.com/products');
